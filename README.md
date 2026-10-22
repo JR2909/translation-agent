@@ -11,6 +11,7 @@ Mit Podman: `systemctl --user start podman.socket`
 ```bash
 podman-compose up -d ollama 
 podman-compose run --rm pull && podman-compose run --rm agent && podman-compose run --rm tests
+python -m translation_agent run
 ```
 
 Die GPU wird per CDI eingebunden (`nvidia.com/gpu=all`, nvidia-container-toolkit erforderlich).
@@ -83,7 +84,15 @@ translation-agent/
 
 ## Konfiguration
 
-Per Umgebungsvariable bzw. `.env`: `TRANSLATOR_MODEL`, `CRITIC_MODEL`, `MAX_ROUNDS` (4), `MAX_TOOL_CALLS` (10),
-`TIME_BUDGET_S` (600), `TEMPERATURE` (0.7), `SEED` (leer), `NUM_CTX`, `PRICE_IN_PER_MTOK`, `PRICE_OUT_PER_MTOK`.
+Per Umgebungsvariable in der compose: 
 
-Dokumentation und Ergebnisse: [`docs/agentic-workflow-rene.md`](docs/agentic-workflow-rene.md)
+`TRANSLATOR_MODEL`
+`CRITIC_MODEL`
+`MAX_ROUNDS`
+`MAX_TOOL_CALLS` (10)
+`TIME_BUDGET_S` (600)
+`TEMPERATURE` (0.7)
+`SEED` (leer)
+`NUM_CTX`
+`PRICE_IN_PER_MTOK`
+`PRICE_OUT_PER_MTOK`
