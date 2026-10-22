@@ -1,0 +1,71 @@
+x-agent-env: &agent-env
+  OLLAMA_HOST: http://ollama:11434
+  TRANSLATOR_MODEL: ${TRANSLATOR_MODEL:-qwen3:4b-instruct}
+  CRITIC_MODEL: ${CRITIC_MODEL:-qwen3:14b}
+  MAX_ROUNDS: ${MAX_ROUNDS:-4}
+  MAX_TOOL_CALLS: ${MAX_TOOL_CALLS:-10}
+  TIME_BUDGET_S: ${TIME_BUDGET_S:-600}
+  TEMPERATURE: ${TEMPERATURE:-0.7}
+  SEED: ${SEED:-}
+  NUM_CTX: ${NUM_CTX:-8192}
+
+services:
+  ollama:
+    image: docker.io/ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+    environment:
+      OLLAMA_MAX_LOADED_MODELS: "2"   # Übersetzer und Kritiker gleichzeitig im VRAM halten
+      OLLAMA_KEEP_ALIVE: 30m
+    # GPU per CDI (Podman  ≥ 25 mit nvidia-container-toolkit).
+    # label=disable: unter SELinux (Fedora/RHEL) blockiert sonst NVML den Zugriff auf /dev/nvidia*.
+    security_opt:
+      - label=disable
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: cdi
+              device_ids: [nvidia.com/gpu=all]
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+
+  pull:
+    image: docker.io/ollama/ollama:latest
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+      TRANSLATOR_MODEL: ${TRANSLATOR_MODEL:-qwen3:4b-instruct}
+      CRITIC_MODEL: ${CRITIC_MODEL:-qwen3:14b}
+    entrypoint: ["sh", "-c", "ollama pull \"$$TRANSLATOR_MODEL\" && ollama pull \"$$CRITIC_MODEL\""]
+    profiles: [setup]
+
+  agent:
+    build: .
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment: *agent-env
+    volumes:
+      # :z = SELinux-Label (Fedora/RHEL); unter Docker ohne SELinux wirkungslos
+      - ./data:/app/data:ro,z
+      - ./results:/app/results:z
+    profiles: [run]
+
+  tests:
+    build: .
+    entrypoint: ["python", "-m", "pytest", "-v"]
+    command: []
+    profiles: [test]
+
+volumes:
+  ollama:

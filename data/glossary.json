@@ -1,0 +1,22 @@
+{
+  "Studienakademie": {"en": "campus", "hinweis": "Örtliche Untereinheit der DHBW; nicht 'study academy'. Plural: campuses."},
+  "Fakultät": {"en": "faculty", "hinweis": "Organisatorische Grundeinheit."},
+  "Fakultätsart": {"en": "faculty type", "hinweis": "Gruppierung gleichartiger Fakultäten (Wirtschaft, Technik und Informatik, Sozialwesen, Gesundheit)."},
+  "studienakademieübergreifende Fakultät": {"en": "cross-campus faculty", "hinweis": "Fakultät über mindestens zwei Studienakademien."},
+  "Planstelle": {"en": "budgeted position", "hinweis": "Haushaltsrechtlich ausgewiesene Stelle; nicht 'plan position'."},
+  "Duale Partner": {"en": "dual partners", "hinweis": "Ausbildungsunternehmen und soziale Einrichtungen im dualen Studium."},
+  "Präsidium": {"en": "Executive Board", "hinweis": "Falscher Freund: nicht 'presidium'."},
+  "Rektorat": {"en": "rectorate", "hinweis": "Leitungsorgan; an der DHBW zentral als 'Präsidium' bezeichnet."},
+  "Senat": {"en": "Senate", "hinweis": "Akademisches Selbstverwaltungsorgan."},
+  "Hochschulrat": {"en": "University Council", "hinweis": "Aufsichtsgremium der Hochschule."},
+  "Grundordnung": {"en": "constitution", "hinweis": "Satzung über die Organisation der Hochschule; nicht 'basic order'."},
+  "Körperschaft des öffentlichen Rechts": {"en": "public-law corporation", "hinweis": "Juristische Person des öffentlichen Rechts."},
+  "Praxisphasen": {"en": "practical phases", "hinweis": "Phasen beim Dualen Partner im Wechsel mit Theoriephasen."},
+  "Weiterbildung": {"en": "continuing education", "hinweis": "Nicht 'further training' im Hochschulkontext."},
+  "Leitbild": {"en": "mission statement", "hinweis": "Nicht 'guiding image'."},
+  "Überörtlicher Fakultätsrat": {"en": "supra-local faculty council", "hinweis": "Fakultätsrat über alle Studienakademien einer Fakultätsart."},
+  "Mehrebenensystem": {"en": "multi-level system", "hinweis": ""},
+  "Hochschulleitung": {"en": "university management", "hinweis": ""},
+  "Gremien": {"en": "committees", "hinweis": "Falscher Freund: nicht 'gremia'. Singular: Gremium = committee / body."},
+  "kooperative Forschung": {"en": "cooperative research", "hinweis": "Forschung im Zusammenwirken mit den Dualen Partnern."}
+}

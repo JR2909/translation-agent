@@ -1,0 +1,37 @@
+name: Unit-Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pytest:
+    name: pytest (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Abhängigkeiten installieren
+        run: pip install -e '.[dev]'
+      # Die Schranken-Tests nutzen ein Test-Double statt Ollama – kein Modell, keine GPU nötig.
+      - name: Tests
+        run: pytest -v
+
+  docker:
+    name: Docker-Image + Tests im Container
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compose-Datei prüfen
+        run: docker compose config --quiet
+      - name: Tests im Container
+        run: docker compose run --rm tests

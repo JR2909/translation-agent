@@ -1,0 +1,10 @@
+{
+  "_hinweis": "Fünf vorab festgelegte Fachbegriffe für die Terminologie-Konsistenz. Bedingung: jeder kommt im Gesamttext mindestens dreimal vor (wird im Bericht geprüft).",
+  "terms": [
+    {"de": "Studienakademie", "de_pattern": "\\bStudienakademien?\\b", "en": "campus", "en_pattern": "(?<!cross-)\\bcampus(es)?\\b"},
+    {"de": "Fakultätsart", "de_pattern": "\\bFakultätsart(en)?\\b", "en": "faculty type", "en_pattern": "\\bfaculty types?\\b"},
+    {"de": "studienakademieübergreifende Fakultät", "de_pattern": "\\bstudienakademieübergreifende\\w* Fakultät", "en": "cross-campus faculty", "en_pattern": "\\bcross-campus facult(y|ies)\\b"},
+    {"de": "Planstelle", "de_pattern": "\\bPlanstellen?\\b", "en": "budgeted position", "en_pattern": "\\bbudgeted positions?\\b"},
+    {"de": "Duale Partner", "de_pattern": "\\bDualen? Partnern?\\b", "en": "dual partners", "en_pattern": "\\bdual partners?\\b"}
+  ]
+}
