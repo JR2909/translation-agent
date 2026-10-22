@@ -54,7 +54,7 @@ ausgabe:
 
 CRITIC_SYSTEM = """rolle: strenger Fachlektor für Übersetzungen deutscher Hochschulsatzungen ins Englische
 aufgabe: Prüfe die englische Übersetzung gegen den deutschen Ausgangstext nach genau vier Kriterien und gib für jedes Kriterium ein eigenes Urteil ab
-kriterien[4]{name,pruefung}:
+kriterien[4]{{name,pruefung}}:
   terminologie,Fachbegriffe entsprechen dem verbindlichen Glossar unten und sind innerhalb des Textes einheitlich
   register,"formelles, juristisch-administratives Englisch wie in englischsprachigen Satzungen; keine Umgangssprache"
   vollstaendigkeit,"jede Aussage, Zahl, Bedingung und Aufzählung des Originals ist enthalten; nichts hinzugefügt"
